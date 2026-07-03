@@ -65,13 +65,13 @@ g++ -std=c++11 main.cpp -o signal_convolver \
 
 توابع کلیدی استفاده شده در پشت صحنه این کلاس به شرح زیر هستند:
 
-### ۱. محاسبه اندازه بافر محاسباتی
+ ۱. محاسبه اندازه بافر محاسباتی
 ```cpp
 IPPAPI(IppStatus, ippsConvolveGetBufferSize, (int src1Len, int src2Len, IppDataType dataType, IppEnum algType, int* pBufferSize))
 ```
 * **کاربرد:** تخمین فضای بافر مورد نیاز در حافظه برای انجام محاسبات سریع کانولوشن.
 
-### ۲. توابع اصلی کانولوشن سیگنال
+  ۲. توابع اصلی کانولوشن سیگنال
 ```cpp
 IPPAPI(IppStatus, ippsConvolve_32f, (const Ipp32f* pSrc1, int src1Len, const Ipp32f* pSrc2, int src2Len, Ipp32f* pDst, IppEnum algType, Ipp8u* pBuffer))
 IPPAPI(IppStatus, ippsConvolve_64f, (const Ipp64f* pSrc1, int src1Len, const Ipp64f* pSrc2, int src2Len, Ipp64f* pDst, IppEnum algType, Ipp8u* pBuffer))
