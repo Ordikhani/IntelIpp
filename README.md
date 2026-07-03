@@ -3,7 +3,7 @@
 
 این پروژه شامل کلاس `SignalConvolver` است که به کمک کتابخانه بهینه‌شده **Intel IPP (Integrated Performance Primitives)**، عملیات کانولوشن (Convolution) را بر روی سیگنال‌های یک‌بعدی با دقت‌های اعشاری ۳۲ بیتی (`float`) و ۶۴ بیتی (`double`) انجام می‌دهد. این پیاده‌سازی از حالت‌های مختلف کانولوشن نظیر `full`، `same` و `valid` پشتیبانی می‌کند.
 
----
+ 
 
 ویژگی ها 
 
@@ -15,7 +15,7 @@
 * **پشتیبانی از کانولوشن دارای Bias:** استفاده از تابع داخلی `ippsConvBiased_32f` برای اعمال آفست مستقیم روی سیگنال خروجی.
 * **کارایی بالا:** بهره‌گیری از بهینه‌سازی‌های سخت‌افزاری پردازنده‌های Intel.
 
----
+ 
 
 ##  پیش‌نیازها و نصب کتابخانه‌ها
 
@@ -35,7 +35,7 @@ sudo apt install intel-oneapi-ipp
 1. به [صفحه دانلود رسمی Intel IPP](https://www.intel.com/content/www/us/en/developer/tools/oneapi/ipp.html) مراجعه کنید.
 2. نسخه سازگار با سیستم‌عامل خود (Windows, Linux, macOS) را دریافت و نصب کنید.
 
----
+ 
 
 ## نحوه کامپایل و لینک کردن
 
@@ -50,7 +50,7 @@ g++ -std=c++11 main.cpp -o signal_convolver \
     -I/opt/intel/oneapi/ipp/latest/include \
     -L/opt/intel/oneapi/ipp/latest/lib/intel64 \
     -lippsignal -lippcore
-```
+ 
 
 در سیستم‌عامل ویندوز (MSVC)
 
@@ -59,28 +59,28 @@ g++ -std=c++11 main.cpp -o signal_convolver \
 2. Additional Library Directories:  مسیر پوشه `lib` معماری مورد نظر (مانند `intel64`).
 3. Additional Dependencies:  اضافه کردن فایل‌های `ipps.lib` و `ippcore.lib` (یا معادل‌های داینامیک آن‌ها).
 
----
+ 
 
  مستندات توابع استفاده شده از IPP
 
 توابع کلیدی استفاده شده در پشت صحنه این کلاس به شرح زیر هستند:
 
  ۱. محاسبه اندازه بافر محاسباتی
-```cpp
+ 
 IPPAPI(IppStatus, ippsConvolveGetBufferSize, (int src1Len, int src2Len, IppDataType dataType, IppEnum algType, int* pBufferSize))
-```
+ 
 * **کاربرد:** تخمین فضای بافر مورد نیاز در حافظه برای انجام محاسبات سریع کانولوشن.
 
   ۲. توابع اصلی کانولوشن سیگنال
-```cpp
+ 
 IPPAPI(IppStatus, ippsConvolve_32f, (const Ipp32f* pSrc1, int src1Len, const Ipp32f* pSrc2, int src2Len, Ipp32f* pDst, IppEnum algType, Ipp8u* pBuffer))
 IPPAPI(IppStatus, ippsConvolve_64f, (const Ipp64f* pSrc1, int src1Len, const Ipp64f* pSrc2, int src2Len, Ipp64f* pDst, IppEnum algType, Ipp8u* pBuffer))
-```
+ 
 * **کاربرد:** انجام کانولوشن خطی بر روی سیگنال‌های یک‌بعدی ۳۲ بیتی و ۶۴ بیتی اعشاری.
 
 ### ۳. کانولوشن همراه با مقدار Bias
-```cpp
+ 
 IPPAPI(IppStatus, ippsConvBiased_32f, (const Ipp32f *pSrc1, int src1Len, const Ipp32f *pSrc2, int src2Len, Ipp32f *pDst, int dstLen, int bias))
-```
+ 
 * **کاربرد:** اعمال یک مقدار ثابت (Bias) به خروجی کانولوشن در طول مشخصی از سیگنال.
-```
+ 
