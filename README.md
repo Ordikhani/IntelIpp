@@ -17,7 +17,7 @@
 
 ---
 
-## 🛠 پیش‌نیازها و نصب کتابخانه‌ها
+##  پیش‌نیازها و نصب کتابخانه‌ها
 
 برای کامپایل و اجرای این پروژه، به ابزارهای ساخت ++C و کتابخانه **Intel IPP** نیاز دارید.
 
@@ -25,7 +25,7 @@
 
 #### روش اول: نصب از طریق Intel oneAPI (پیشنهادی)
 Intel IPP به عنوان بخشی از ابزار **Intel oneAPI Base Toolkit** ارائه می‌شود. برای نصب در توزیع‌های مبتنی بر دبیان/ابونتو می‌توانید از دستور زیر استفاده کنید:
-```bash
+ 
 sudo apt update
 sudo apt install intel-oneapi-ipp
 
@@ -45,7 +45,7 @@ sudo apt install intel-oneapi-ipp
 
 کد زیر را متناسب با مسیر نصب IPP در سیستم خود اجرا کنید (معمولاً در `/opt/intel/oneapi/ipp/latest` قرار دارد):
 
-```bash
+ 
 g++ -std=c++11 main.cpp -o signal_convolver \
     -I/opt/intel/oneapi/ipp/latest/include \
     -L/opt/intel/oneapi/ipp/latest/lib/intel64 \
